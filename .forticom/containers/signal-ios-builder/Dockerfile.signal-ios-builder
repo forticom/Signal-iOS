@@ -1,0 +1,16 @@
+# Use an empty base image
+FROM scratch
+
+# Set environment variables
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+
+RUN mkdir -p /forticom/scripts/
+RUN mkdir -p /forticom/results/
+
+COPY scripts /forticom/scripts
+
+WORKDIR /src
+
+# Add entrypoint for interactive shell
+ENTRYPOINT ["/bin/bash", "/forticom/scripts/make-signal-ios.sh"]
